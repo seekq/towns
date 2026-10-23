@@ -205,3 +205,9 @@ The CLI was checked against live CSO metadata, JSON-stat 1 and 2, a Lisdoonvarna
 - [JSON-stat specification](https://json-stat.org/format/)
 - [Wrangler configuration](https://developers.cloudflare.com/workers/wrangler/configuration/)
 - [Wrangler Worker commands](https://developers.cloudflare.com/workers/wrangler/commands/workers/)
+
+## Dynamic census years
+
+The web app discovers census subjects, years, collections, town-population tables, town lists and statistic definitions through the CSO PxStat API. It defaults to the newest catalogue year. There are no embedded year-to-table mappings or fixed-year references in the generated HTML. A new census subject and compatible town table can be displayed without a code change; incompatible or unavailable town tables produce an explanation and remain accessible through Browse CSO. Changing year clears old matches and results. Result headings and CSV filenames identify the chosen year. Town boundaries and definitions may differ between censuses.
+
+Verified against live town data for six census years, with catalogue discovery, query filters, cards, labels and a simulated future-year test. The deployed app remains at the URL above.
