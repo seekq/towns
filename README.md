@@ -8,13 +8,25 @@ Explore official Irish statistics through a Python command-line tool or an iPhon
 
 The web app provides:
 
-- Town and county-name search against the Census 2022 town list.
-- Population, average age and age-group summaries, plus statistics by sex.
+- A census-year selector (2022, 2016, 2011, 2006) for town search; the last choice is remembered on the device.
+- Town and county-name search against the selected census's town list.
+- 2022: population, average age and age-group summaries, plus statistics by sex. 2016, 2011 and 2006: population by sex and change since the previous census.
 - A browser for CSO subjects, collections and tables, with a value selector for each dimension.
 - CSV download of all returned cells; the on-screen table displays up to 200 cells.
 - A responsive interface that can be added to an iPhone Home Screen.
 
-The deployed ChatGPT Site is private to its owner and may request ChatGPT sign-in. Open the URL in Safari, tap **Share → Add to Home Screen**, and choose **Add**. It is a Home Screen web app, rather than an App Store/native iOS application. Internet access is required; there is no offline data cache. Census figures refer to 2022, not today's population.
+The deployed ChatGPT Site is private to its owner and may request ChatGPT sign-in. Open the URL in Safari, tap **Share → Add to Home Screen**, and choose **Add**. It is a Home Screen web app, rather than an App Store/native iOS application. Internet access is required; there is no offline data cache. Census figures refer to the selected census year, not today's population.
+
+### Census year sources
+
+| Year | CSO table (subject/collection/table) | Town dimension |
+| --- | --- | --- |
+| 2022 | `76/C2022P1/F1015` | `C04160V04929` |
+| 2016 | `10/C2016P2/E2016` | `C02799V03469` |
+| 2011 | `11/C2011P1/CD121` (`TLIST(A1)=2011`) | `C02799V03469` |
+| 2006 | `11/C2011P1/CD121` (`TLIST(A1)=2006`) | `C02799V03469` |
+
+Town codes differ between 2022 and earlier censuses, and town boundaries change between censuses, so figures are not always directly comparable across years. Add a year by extending `YEARS` in the page script inside `web/worker/index.js`.
 
 ## Repository files
 
@@ -176,7 +188,7 @@ From the repository root:
 python3 -m unittest discover -s tests -v
 ```
 
-The CLI was checked against live CSO metadata, JSON-stat 1 and 2, a Lisdoonvarna population query, and native CSV export. Its tests cover sparse values, category ordering, status flags, validation and retry exhaustion. Native XLSX/PX exports have not been live-tested. Web syntax, Worker artifact structure, proxy validation and cube parsing were checked; iPhone browser testing remains unverified.
+The CLI was checked against live CSO metadata, JSON-stat 1 and 2, a Lisdoonvarna population query, and native CSV export. Its tests cover sparse values, category ordering, status flags, validation and retry exhaustion. Native XLSX/PX exports have not been live-tested. Web syntax, Worker artifact structure, proxy validation and cube parsing were checked; the census-year selector was tested in jsdom against mocked responses shaped like each year's table; iPhone browser testing remains unverified.
 
 ## Troubleshooting
 
