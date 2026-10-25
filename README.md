@@ -2,7 +2,7 @@
 
 A static, responsive Census 2022 snapshot of **867 Irish towns**, built only from official Central Statistics Office (CSO) downloads. Search by town or county, select a town, and explore population, age, people, work, families, homes and services. Deep links use `?town=<CSO GUID>`.
 
-**GitHub Pages deployment target:** https://seekq.github.io/towns/ — this is a target until the Pages workflow completes successfully. Deployment status and the verified URL are recorded in `TEST_REPORT.md`.
+**GitHub Pages deployment target:** https://seekq.github.io/towns/ — publication is blocked until Pages is enabled in repository settings. All 8 pipeline and 16 browser tests passed in [GitHub Actions](https://github.com/seekq/towns/actions/runs/40220066461). Details and the exact handoff are recorded in [TEST_REPORT.md](TEST_REPORT.md).
 
 Version 2 intentionally uses **Census 2022 only**, as specified. It replaces the web experience with a static app that requires no server, CSO API proxy or key. The Python CLI remains available; see [version 1 CLI documentation](docs/VERSION_1.md). The previous ChatGPT-hosted Worker and its identity are retained for history; committing this static app does not update that older URL.
 
