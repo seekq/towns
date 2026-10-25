@@ -1,0 +1,71 @@
+name: Test and deploy Census Explorer
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      refresh_data:
+        description: Download fresh official CSO files (manual only)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: python -m pip install pytest
+      - run: npm ci
+      - name: Refresh official inputs only on explicit manual dispatch
+        if: github.event_name == 'workflow_dispatch' && inputs.refresh_data
+        run: python pipeline/fetch.py
+      - run: python pipeline/build.py
+      - run: python -m pytest tests/pipeline -q
+      - run: python pipeline/sanity.py
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:e2e
+      - name: Retain verification reports and refreshed sources
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-and-data
+          path: |
+            playwright-report/
+            test-results/
+            data/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+  deploy:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Smoke-test published site
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          curl --fail --retry 6 --retry-delay 10 "$PAGE_URL" -o /tmp/site.html
+          python -c "assert 'A town, in numbers.' in open('/tmp/site.html').read()"
+          curl --fail --retry 3 "${PAGE_URL}data/towns.json" -o /tmp/towns.json
+          python -c "import json; d=json.load(open('/tmp/towns.json')); assert len(d['towns']) > 0; assert all(t['population'] is not None for t in d['towns'])"

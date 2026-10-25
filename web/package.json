@@ -1,1 +1,9 @@
-{"name":"irish-towns-web","private":true,"type":"module","scripts":{"build":"bash scripts/build.sh","validate":"node scripts/validate-artifact.mjs"}}
+{
+  "name": "irish-towns-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "validate": "node --check app.js && test -f dist/index.html"
+  }
+}

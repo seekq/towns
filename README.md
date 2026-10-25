@@ -1,213 +1,125 @@
-# Irish Towns — CSO Ireland explorer
+# Irish Towns Census Explorer — version 2
 
-**Deployed app:** https://cso-towns-phone.tq49qqc5nn.chatgpt.site
+A static, responsive Census 2022 snapshot of **867 Irish towns**, built only from official Central Statistics Office (CSO) downloads. Search by town or county, select a town, and explore population, age, people, work, families, homes and services. Deep links use `?town=<CSO GUID>`.
 
-Explore official Irish statistics through a Python command-line tool or an iPhone-friendly web app. Both use CSO Ireland's public PxStat API; no CSO API key is required.
+**GitHub Pages deployment target:** https://seekq.github.io/towns/ — this is a target until the Pages workflow completes successfully. Deployment status and the verified URL are recorded in `TEST_REPORT.md`.
 
-## Web app
+Version 2 intentionally uses **Census 2022 only**, as specified. It replaces the web experience with a static app that requires no server, CSO API proxy or key. The Python CLI remains available; see [version 1 CLI documentation](docs/VERSION_1.md). The previous ChatGPT-hosted Worker and its identity are retained for history; committing this static app does not update that older URL.
 
-The web app provides:
+## Install, rebuild and run
 
-- A census-year selector (2022, 2016, 2011, 2006) for town search; the last choice is remembered on the device.
-- Town and county-name search against the selected census's town list.
-- 2022: population, average age and age-group summaries, plus statistics by sex. 2016, 2011 and 2006: population by sex and change since the previous census.
-- A browser for CSO subjects, collections and tables, with a value selector for each dimension.
-- CSV download of all returned cells; the on-screen table displays up to 200 cells.
-- A responsive interface that can be added to an iPhone Home Screen.
-
-The deployed ChatGPT Site is private to its owner and may request ChatGPT sign-in. Open the URL in Safari, tap **Share → Add to Home Screen**, and choose **Add**. It is a Home Screen web app, rather than an App Store/native iOS application. Internet access is required; there is no offline data cache. Census figures refer to the selected census year, not today's population.
-
-### Census year sources
-
-| Year | CSO table (subject/collection/table) | Town dimension |
-| --- | --- | --- |
-| 2022 | `76/C2022P1/F1015` | `C04160V04929` |
-| 2016 | `10/C2016P2/E2016` | `C02799V03469` |
-| 2011 | `11/C2011P1/CD121` (`TLIST(A1)=2011`) | `C02799V03469` |
-| 2006 | `11/C2011P1/CD121` (`TLIST(A1)=2006`) | `C02799V03469` |
-
-Town codes differ between 2022 and earlier censuses, and town boundaries change between censuses, so figures are not always directly comparable across years. Add a year by extending `YEARS` in the page script inside `web/worker/index.js`.
-
-## Repository files
-
-| Path | Purpose |
-| --- | --- |
-| `cso.py` | Python CLI |
-| `requirements.txt` | CLI dependencies |
-| `tests/test_cso.py` | CLI regression tests |
-| `web/worker/index.js` | Web interface and server-side CSO proxy, embedded in one Worker module |
-| `web/scripts/build.sh` | Package the Worker into `web/dist/` |
-| `web/scripts/validate-artifact.mjs` | Validate the built Worker and hosting manifest |
-| `web/.openai/hosting.json` | Identity of the existing ChatGPT Site |
-| `web/wrangler.jsonc` | Configuration for optional Cloudflare Workers hosting |
-
-## Install and run the CLI
-
-Requires Python 3.9 or later. On macOS or Linux:
+Requires Python **3.11+**, Node.js **22+**, and npm.
 
 ```sh
 git clone https://github.com/seekq/towns.git
 cd towns
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
-python3 cso.py --help
-```
+npm ci
+python -m pip install pytest
 
-For later sessions, enter the repository directory and activate `.venv` again. The CLI does not require a web server.
+# One command: re-download all official inputs and rebuild towns.json + sanity log
+npm run rebuild:data
 
-## CLI commands
+# Rebuild using committed raw inputs; no CSO network dependency
+python pipeline/build.py
 
-The general syntax is:
-
-```text
-python3 cso.py [--lang LANGUAGE] COMMAND [ARGUMENTS] [OPTIONS]
-```
-
-`--lang` defaults to `en` and must appear before the command. CSO must supply the requested table in that language. Use `--help` for global help or `COMMAND --help` for command-specific help.
-
-| Command | Arguments | Purpose / options |
-| --- | --- | --- |
-| `subjects` | None | List subjects; `--contains TEXT` filters their names. |
-| `products` | `SUBJECT` | List collections in a subject; `--contains TEXT` filters names. |
-| `tables` | `SUBJECT PRODUCT` | List tables; `--contains TEXT` filters names. |
-| `meta` | `SUBJECT PRODUCT TABLE` | Show dimensions; `--show-values` lists category codes and labels. |
-| `values` | `SUBJECT PRODUCT TABLE` | Find category codes; `--dimension CODE_OR_NAME` selects a dimension and `--contains TEXT` searches codes and labels. |
-| `data` | `SUBJECT PRODUCT TABLE` | Query data; options are listed below. |
-
-### Data options
-
-| Option | Meaning |
-| --- | --- |
-| `--select 'CODE=V1,V2'` | Select category codes or labels; repeat for different dimensions. |
-| `--select 'CODE=*'` | Select all values in that dimension. Omitted dimensions also select all. |
-| `--format FORMAT` | `json-stat2` (default), `json-stat`, `csv`, `xlsx`, or `px`. |
-| `--output FILE` | Save the complete API response. Required for CSV, XLSX and PX. JSON formats also display a table. |
-| `--max-rows N` | Limit displayed cells; default 200, positive integers only. Does not truncate the saved response. |
-| `--codes` | Display category codes instead of labels for JSON formats. |
-| `--pivot CODE` | Pivot dimension for native CSV/XLSX exports only. |
-| `--pyjstat-hint` | Legacy compatibility flag; accepted but currently has no effect. pandas/pyjstat are not required. |
-
-A dimension can be specified by code or exact dimension name. A value can be a category code, an exact label, or a unique label fragment, matched without case sensitivity. Ambiguous matches and unknown values are rejected. Values are separated by commas, so use a code or unique fragment when a label itself contains a comma. Specify a dimension once and combine its values in that selection.
-
-### Example: Lisdoonvarna population
-
-Discover the table and its codes:
-
-```sh
-python3 cso.py subjects --contains census
-python3 cso.py products 76
-python3 cso.py tables 76 C2022P1 --contains population
-python3 cso.py meta 76 C2022P1 F1015
-python3 cso.py values 76 C2022P1 F1015 --contains Lisdoonvarna
-```
-
-Query population using the town name:
-
-```sh
-python3 cso.py data 76 C2022P1 F1015 \
-  --select 'List of Towns=Lisdoonvarna' \
-  --select 'STATISTIC=F1015C01'
-```
-
-The verified Census 2022 response is 934 people: 385 male and 549 female. To return only the total:
-
-```sh
-python3 cso.py data 76 C2022P1 F1015 \
-  --select 'List of Towns=Lisdoonvarna' \
-  --select 'STATISTIC=F1015C01' \
-  --select 'C02199V02655=Both sexes'
-```
-
-Save all statistics for the town:
-
-```sh
-python3 cso.py data 76 C2022P1 F1015 \
-  --select 'List of Towns=Lisdoonvarna' \
-  --format csv --output lisdoonvarna.csv
-```
-
-Save the complete JSON-stat 2 response while displaying only three cells:
-
-```sh
-python3 cso.py data 76 C2022P1 F1015 \
-  --select 'List of Towns=Lisdoonvarna' \
-  --output lisdoonvarna.json --max-rows 3
-```
-
-## Run and package the website
-
-The web version is JavaScript, not a Python server. Its Worker serves the page, manifest and icon, and forwards validated queries to CSO. It needs a Worker-compatible server; serving the HTML alone through GitHub Pages will not provide its `/api` endpoint.
-
-Requires Node.js 22 or later, npm and bash. Build and validate without installing dependencies:
-
-```sh
-cd web
+# Package static folder with index.html at its root
 npm run build
-npm run validate
+python -m http.server 8080 --directory web/dist
 ```
 
-The build creates `dist/server/index.js` and `dist/.openai/hosting.json`. Edit `worker/index.js`, then rebuild; generated `dist/` files are not the source of truth. The HTML, CSS and client JavaScript are embedded in the module's `page` string.
+Open http://localhost:8080. For an iPhone, open the deployed URL in Safari and use **Share → Add to Home Screen**. This is a static web app, not an App Store application. No personal information is collected. Internet access is needed to load it; no service worker or offline guarantee is supplied.
 
-Create a deployment archive from the generated output:
+A download error stops the refresh with the failing URL. Files are all downloaded before replacing inputs; no sample or synthetic fallback exists. Each rebuild verifies SHA-256 checksums and the current glossary descriptions. If official definitions change, review the field map rather than bypassing the error.
+
+## Sources and geography
+
+- [SAPS Census 2022 source page](https://www.cso.ie/en/census/census2022/census2022smallareapopulationstatistics/): towns/built-up-area CSV and the revised XLSX glossary.
+- [F1015](https://data.cso.ie/table/F1015): authoritative names, county labels and population, selected for Census 2022 and both sexes.
+- [FY001](https://data.cso.ie/table/FY001): national population, Census 2022, State, both sexes.
+- [Download URLs, dates and checksums](data/raw/SOURCES.md), with machine-readable manifest in `data/raw/sources.json`.
+
+The town-file aggregate labelled “State”/“Ireland” (`IE0`) is the **built-up-area population aggregate**, not the national population. It is excluded as a non-town in [exclusions.json](data/exclusions.json). The national denominator is read from FY001. Never sum towns to infer the population of Ireland.
+
+Join SAPS `GUID` to F1015 `C04160V04929`, never names. All 867 town GUIDs match; `data/unmatched.json` records any failures and the build stops if there are any. The SAPS CSV is Windows-1252; the pipeline decodes it explicitly and writes UTF-8 output. Names are retained exactly from F1015, including accents and capitalization. Multi-county labels are retained. Towns share competition ranks when populations tie (1, 2, 2, 4).
+
+## Field map and definitions
+
+Every requested field has an entry in [field_map.json](data/field_map.json), including source columns, exact glossary descriptions, denominator column/description and interpretation notes. [Readable mapping table](data/FIELD_MAP_REVIEW.md).
+
+| Section | Source / denominator |
+| --- | --- |
+| Population and age | T1_1 / total population |
+| Marital status | T1_2 / published all-age marital-status total |
+| Irish language | T3_1 / population aged 3+ |
+| Citizenship | T2_1 citizenship categories / citizenship total |
+| Religion | T2_4 / religion total |
+| General health | T12_3 / general health total |
+| Carers and disability | T12_2 and T12_1 counts / total population |
+| Economic status | T8_1 / persons aged 15+ |
+| Remote work | T11_1 work-at/from-home / work commuting base |
+| Families | T4_3 one-parent totals / T4_1 total families |
+| Single-person households | T5_1 / private household total |
+| Housing | T6 tables / each table’s own household or dwelling total |
+| Internet and cars | T15 / each question’s household total |
+
+Approved semantic adjustments: marital status is all ages, “Irish” means citizenship (not native-born), unemployed includes first-job seekers plus short- and long-term unemployed, carers/disability use total population, and “No smoke alarms” uses the CSO label. Group/private water sums group schemes with public source, group schemes with private source, and other private sources. The terminal `GE5BRH` bedroom band is displayed as 5+; the glossary abbreviates its description to “5 bedrooms.”
+
+Explicit sums use source categories only: ages 0–4 and 75+, non-Irish citizenship categories, one-parent mothers/fathers, unemployment categories, group/private water, and three-plus cars. Rental types are shown separately. No field is calculated by subtraction. “Other religion” uses the CSO aggregate directly. Civil partnerships are included in the CSO married category and cannot be separated.
+
+### Fields shown as n/a
+
+| Field | Reason |
+| --- | --- |
+| Daily smokers | SAPS publishes all smokers combined, without a daily-only category. |
+| Married couples without children (families) | Published family tables do not identify married vs cohabiting couples. Household composition is a different measure. |
+| Married couples with children (families) | Same limitation; no substitution with household counts. |
+| Cohabiting couples (families) | Same limitation; no matching family-type row. |
+
+Blank/suppressed source cells stay null, including any aggregate whose component is null. Zero remains zero. Percentages require a known count and a positive denominator. A true zero denominator has no defined percentage and displays n/a.
+
+## Tests
 
 ```sh
-tar -czf ../irish-towns-site.tar.gz -C dist .
+python -m pytest tests/pipeline -q
+python pipeline/sanity.py
+npm run build
+npx playwright install --with-deps chromium webkit
+npm run test:e2e
 ```
 
-### Update the existing ChatGPT Site
+Pipeline tests cover population parity, town coverage/exclusions, unique IDs, rank ties, nonnegative data, percentage arithmetic, complete category partitions, mapping coverage, null parsing, glossary consistency and deterministic rebuilds. Source partition results are in `data/category_checks.json`; no discrepancy tolerance is silently applied.
 
-The live Site URL is https://cso-towns-phone.tq49qqc5nn.chatgpt.site.
+Playwright runs Chromium and WebKit at desktop and **360px mobile** widths. It checks all options and sorting, keyboard search, selection, deep links, every field and section, header figures, error handling, console errors, horizontal overflow and axe WCAG A/AA findings. Reports are saved under `playwright-report/` and `test-results/` (not checked in); CI uploads them as an artifact. See [test report](TEST_REPORT.md).
 
-From ChatGPT Work with Sites connected, ask it to update this existing Site using the `web/` source in this repository. The existing identity is retained in `web/.openai/hosting.json`; do not create a second Site or substitute a new project ID.
+[Ballycotton sanity log](data/BALLYCOTTON_SANITY.md) compares every supplied newspaper figure and marks differences over 10%. It never supplies application data or asserts newspaper parity. Differences may reflect definition, measure or boundary; their cause is not assumed. Notably, bedroom household counts differ from the newspaper, and daily-only smoking cannot be compared.
 
-The Sites publishing workflow must synchronize source to the Site's managed repository, build and validate the exact source commit, package `dist/`, save that version and deploy it with the existing private audience. A GitHub commit alone does **not** update the live Site. Sites source credentials and publishing operations are provided by ChatGPT Work; the ordinary `tar` command does not publish or authenticate a deployment.
+## GitHub Pages
 
-### Optional: run locally or publish to your own Cloudflare Workers account
+The committed workflow `.github/workflows/pages.yml` runs on each push to `main`: builds data from committed raw files, runs pytest, builds static output, runs all Playwright projects, and deploys **only after checks pass**. `web/dist` is the deployment artifact.
 
-These commands use Cloudflare's official Wrangler CLI and the included `wrangler.jsonc`. They are an alternative hosting route; they do not update the existing ChatGPT Site.
+For first-time setup, open **Repository Settings → Pages → Build and deployment → Source → GitHub Actions**. Then run **Actions → Test and deploy Census Explorer → Run workflow**. The workflow cannot deploy if Pages is disabled or repository policies block it. The `github-pages` environment may also require approval under your repository settings.
 
-From `web/`:
+The CSO fetch runs **only** on manual workflow dispatch when **Refresh official inputs** is selected. The refreshed sources and manifest are uploaded with the verification artifact; they are not silently pushed back to `main`. Download and review them, or run `npm run rebuild:data` locally and commit the inputs/output, to make the refresh durable in Git. Push-triggered CI always uses the committed raw files.
+
+After deployment, the workflow smoke-tests the published HTML and JSON. For a full browser smoke test against a deployed site:
 
 ```sh
-# Preview locally; open the localhost URL printed by Wrangler.
-npx wrangler@4 dev
-
-# Authenticate to your Cloudflare account and deploy.
-npx wrangler@4 login
-npx wrangler@4 deploy
+TEST_BASE_URL=https://seekq.github.io/towns/ npm run test:e2e
 ```
 
-Wrangler bundles `worker/index.js` directly, so the Sites archive is not needed for this route. Deployment prints the resulting website URL. This optional deployment is public by default and does not include ChatGPT's owner-only sign-in. No Cloudflare deployment was performed as part of this update.
+### Manual free-hosting alternative
 
-## Tests and verification
+Run `npm run build`, then drag the **web/dist folder** (containing `index.html` at its root) onto https://app.netlify.com/drop. Upload the folder, not the repository or a lone HTML file. Netlify supplies the public URL; account and retention terms are set by Netlify.
 
-From the repository root:
+## Layout
 
-```sh
-python3 -m unittest discover -s tests -v
-```
+- `pipeline/`: fetch, glossary parser, builder, newspaper sanity diagnostic.
+- `data/raw/`: original downloads, source URLs/dates/checksums.
+- `data/`: field map, exclusions, unmatched report, partitions and sanity log.
+- `web/`: static HTML, CSS, JS, data and static builder. `worker/` is retained version 1 source.
+- `tests/pipeline/`, `tests/e2e/`: pytest and Playwright tests.
+- `.github/workflows/pages.yml`: gated build, verification and Pages deployment.
 
-The CLI was checked against live CSO metadata, JSON-stat 1 and 2, a Lisdoonvarna population query, and native CSV export. Its tests cover sparse values, category ordering, status flags, validation and retry exhaustion. Native XLSX/PX exports have not been live-tested. Web syntax, Worker artifact structure, proxy validation and cube parsing were checked; the census-year selector was tested in jsdom against mocked responses shaped like each year's table; iPhone browser testing remains unverified.
+## Attribution and licence
 
-## Troubleshooting
-
-- **Missing requests/rich:** activate `.venv` and rerun `python3 -m pip install -r requirements.txt`.
-- **Unknown dimension:** use `meta`; `TOWN` is not the dimension code for F1015. Use `C04160V04929` or `List of Towns`.
-- **Unknown/ambiguous town:** use `values --contains NAME` and select the returned code.
-- **Too much data:** add dimension filters. `--max-rows` reduces display only, not the download.
-- **CSO unavailable:** try again later. The CLI retries transient failures and respects bounded `Retry-After` delays; the web app displays an error and allows another attempt.
-- **Website returns old results:** table metadata may be cached for five minutes. Requests require internet access.
-
-## References
-
-- [CSO PxStat user guide](https://www.cso.ie/en/databases/userguides/pxstatuserguide/)
-- [JSON-stat specification](https://json-stat.org/format/)
-- [Wrangler configuration](https://developers.cloudflare.com/workers/wrangler/configuration/)
-- [Wrangler Worker commands](https://developers.cloudflare.com/workers/wrangler/commands/workers/)
-
-## Dynamic census years
-
-The web app discovers census subjects, years, collections, town-population tables, town lists and statistic definitions through the CSO PxStat API. It defaults to the newest catalogue year. There are no embedded year-to-table mappings or fixed-year references in the generated HTML. A new census subject and compatible town table can be displayed without a code change; incompatible or unavailable town tables produce an explanation and remain accessible through Browse CSO. Changing year clears old matches and results. Result headings and CSV filenames identify the chosen year. Town boundaries and definitions may differ between censuses.
-
-Verified against live town data for six census years, with catalogue discovery, query filters, cards, labels and a simulated future-year test. The deployed app remains at the URL above.
+Source: **Central Statistics Office, Ireland, Census 2022 SAPS, F1015 and FY001**, downloaded on the date in the source manifest. CSO statistical information is licensed under **Creative Commons Attribution 4.0 (CC BY 4.0)**; see [CSO Copyright and Re-use Policy](https://www.cso.ie/en/aboutus/whoweare/copyrightpolicy/) and [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The app selects and sums identified published categories and computes percentages/ranks; it is not a CSO product or endorsement. Preserve this attribution when redistributing data. No newspaper artwork is reproduced. No separate open-source licence has been assigned to the application code.

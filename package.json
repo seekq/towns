@@ -1,0 +1,31 @@
+{
+  "name": "irish-towns-census-explorer",
+  "version": "2.0.0",
+  "description": "Static Irish town snapshots from official CSO Census 2022 downloads",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "node web/build.mjs",
+    "test:pipeline": "python -m pytest tests/pipeline -q",
+    "test:e2e": "playwright test",
+    "rebuild:data": "python pipeline/fetch.py && python pipeline/build.py && python pipeline/sanity.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seekq/towns.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/seekq/towns/issues"
+  },
+  "homepage": "https://github.com/seekq/towns#readme",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "1.56.1"
+  },
+  "private": true
+}

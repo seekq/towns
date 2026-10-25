@@ -1,0 +1,1201 @@
+{
+  "status": "Reviewed; semantic changes approved 2026-10-25. Unsupported fields remain null.",
+  "fields": [
+    {
+      "section": "Population",
+      "key": "total",
+      "label": "Total",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_1AGETT"
+      ],
+      "glossary": [
+        {
+          "description": "Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": null,
+      "category": "total population"
+    },
+    {
+      "section": "Population",
+      "key": "male",
+      "label": "Male",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_1AGETM"
+      ],
+      "glossary": [
+        {
+          "description": "Total - Males",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": null,
+      "category": "total population"
+    },
+    {
+      "section": "Population",
+      "key": "female",
+      "label": "Female",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_1AGETF"
+      ],
+      "glossary": [
+        {
+          "description": "Total - Females",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": null,
+      "category": "total population"
+    },
+    {
+      "section": "Marital status",
+      "key": "single",
+      "label": "Single",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_2SGLT"
+      ],
+      "glossary": [
+        {
+          "description": "Single - Total",
+          "table": "Table 2: Population by sex and marital status"
+        }
+      ],
+      "denominator": "T1_2T",
+      "denominatorGlossary": {
+        "description": "Total ",
+        "table": "Table 2: Population by sex and marital status"
+      },
+      "note": "All ages, as published in SAPS; married includes civil partnerships. Approved change from requested 15+ base.",
+      "category": "marital status"
+    },
+    {
+      "section": "Marital status",
+      "key": "married",
+      "label": "Married (incl. civil partnership)",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_2MART"
+      ],
+      "glossary": [
+        {
+          "description": "Married (incl. same sex civil partnership) - Total",
+          "table": "Table 2: Population by sex and marital status"
+        }
+      ],
+      "denominator": "T1_2T",
+      "denominatorGlossary": {
+        "description": "Total ",
+        "table": "Table 2: Population by sex and marital status"
+      },
+      "note": "All ages, as published in SAPS; married includes civil partnerships. Approved change from requested 15+ base.",
+      "category": "marital status"
+    },
+    {
+      "section": "Marital status",
+      "key": "separated",
+      "label": "Separated",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_2SEPT"
+      ],
+      "glossary": [
+        {
+          "description": "Separated - Total",
+          "table": "Table 2: Population by sex and marital status"
+        }
+      ],
+      "denominator": "T1_2T",
+      "denominatorGlossary": {
+        "description": "Total ",
+        "table": "Table 2: Population by sex and marital status"
+      },
+      "note": "All ages, as published in SAPS; married includes civil partnerships. Approved change from requested 15+ base.",
+      "category": "marital status"
+    },
+    {
+      "section": "Marital status",
+      "key": "divorced",
+      "label": "Divorced",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_2DIVT"
+      ],
+      "glossary": [
+        {
+          "description": "Divorced - Total",
+          "table": "Table 2: Population by sex and marital status"
+        }
+      ],
+      "denominator": "T1_2T",
+      "denominatorGlossary": {
+        "description": "Total ",
+        "table": "Table 2: Population by sex and marital status"
+      },
+      "note": "All ages, as published in SAPS; married includes civil partnerships. Approved change from requested 15+ base.",
+      "category": "marital status"
+    },
+    {
+      "section": "Marital status",
+      "key": "widowed",
+      "label": "Widowed",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_2WIDT"
+      ],
+      "glossary": [
+        {
+          "description": "Widowed - Total",
+          "table": "Table 2: Population by sex and marital status"
+        }
+      ],
+      "denominator": "T1_2T",
+      "denominatorGlossary": {
+        "description": "Total ",
+        "table": "Table 2: Population by sex and marital status"
+      },
+      "note": "All ages, as published in SAPS; married includes civil partnerships. Approved change from requested 15+ base.",
+      "category": "marital status"
+    },
+    {
+      "section": "Irish language",
+      "key": "irishLanguage",
+      "label": "Can speak Irish",
+      "source": "SAPS 2022",
+      "columns": [
+        "T3_1YES"
+      ],
+      "glossary": [
+        {
+          "description": "Yes",
+          "table": "Table 1: Population aged 3 years and over by ability to speak Irish"
+        }
+      ],
+      "denominator": "T3_1T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 3 years and over by ability to speak Irish"
+      },
+      "note": null,
+      "category": "population aged 3+"
+    },
+    {
+      "section": "Nationality",
+      "key": "irish",
+      "label": "Irish (citizenship)",
+      "source": "SAPS 2022",
+      "columns": [
+        "T2_1IEC"
+      ],
+      "glossary": [
+        {
+          "description": "Ireland - Citizenship",
+          "table": "Table 1: Usually resident population by place of birth and citizenship"
+        }
+      ],
+      "denominator": "T2_1TC",
+      "denominatorGlossary": {
+        "description": "Total - Citizenship",
+        "table": "Table 1: Usually resident population by place of birth and citizenship"
+      },
+      "note": "Citizenship, not native-born. Label needs clarification.",
+      "category": "citizenship"
+    },
+    {
+      "section": "Nationality",
+      "key": "nonIrish",
+      "label": "Non-Irish citizenship",
+      "source": "SAPS 2022",
+      "columns": [
+        "T2_1UKC",
+        "T2_1PLC",
+        "T2_1INC",
+        "T2_1EUC",
+        "T2_1RWC"
+      ],
+      "glossary": [
+        {
+          "description": "UK - Citizenship",
+          "table": "Table 1: Usually resident population by place of birth and citizenship"
+        },
+        {
+          "description": "Poland - Citizenship",
+          "table": "Table 1: Usually resident population by place of birth and citizenship"
+        },
+        {
+          "description": "India - Citizenship",
+          "table": "Table 1: Usually resident population by place of birth and citizenship"
+        },
+        {
+          "description": "Other EU27 (2020) – Citizenship",
+          "table": "Table 1: Usually resident population by place of birth and citizenship"
+        },
+        {
+          "description": "Rest of world -Citizenship",
+          "table": "Table 1: Usually resident population by place of birth and citizenship"
+        }
+      ],
+      "denominator": "T2_1TC",
+      "denominatorGlossary": {
+        "description": "Total - Citizenship",
+        "table": "Table 1: Usually resident population by place of birth and citizenship"
+      },
+      "note": "Sum of five published non-Irish citizenship categories; not stated is excluded from the numerator.",
+      "category": "citizenship"
+    },
+    {
+      "section": "Religion",
+      "key": "catholic",
+      "label": "Catholic",
+      "source": "SAPS 2022",
+      "columns": [
+        "T2_4CA"
+      ],
+      "glossary": [
+        {
+          "description": "Catholic",
+          "table": "Table 4: Population by religion"
+        }
+      ],
+      "denominator": "T2_4T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 4: Population by religion"
+      },
+      "note": null,
+      "category": "religion"
+    },
+    {
+      "section": "Religion",
+      "key": "noReligion",
+      "label": "No religion",
+      "source": "SAPS 2022",
+      "columns": [
+        "T2_4NR"
+      ],
+      "glossary": [
+        {
+          "description": "No religion",
+          "table": "Table 4: Population by religion"
+        }
+      ],
+      "denominator": "T2_4T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 4: Population by religion"
+      },
+      "note": null,
+      "category": "religion"
+    },
+    {
+      "section": "Religion",
+      "key": "otherReligion",
+      "label": "Other religion",
+      "source": "SAPS 2022",
+      "columns": [
+        "T2_4OR"
+      ],
+      "glossary": [
+        {
+          "description": "Other religion",
+          "table": "Table 4: Population by religion"
+        }
+      ],
+      "denominator": "T2_4T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 4: Population by religion"
+      },
+      "note": null,
+      "category": "religion"
+    },
+    {
+      "section": "Health",
+      "key": "veryGoodHealth",
+      "label": "General health very good",
+      "source": "SAPS 2022",
+      "columns": [
+        "T12_3_VGT"
+      ],
+      "glossary": [
+        {
+          "description": "Very good - Total",
+          "table": "Table 3: Population by general health and sex"
+        }
+      ],
+      "denominator": "T12_3_TT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 3: Population by general health and sex"
+      },
+      "note": null,
+      "category": "health"
+    },
+    {
+      "section": "Carers",
+      "key": "carers",
+      "label": "Provides unpaid care",
+      "source": "SAPS 2022",
+      "columns": [
+        "T12_2_T"
+      ],
+      "glossary": [
+        {
+          "description": "Total",
+          "table": "Table 2: Carers by sex"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": "Total population denominator, as approved.",
+      "category": "total population"
+    },
+    {
+      "section": "Smoking",
+      "key": "dailySmokers",
+      "label": "Daily smokers",
+      "source": null,
+      "columns": null,
+      "glossary": [],
+      "denominator": "T12_4_T",
+      "denominatorGlossary": {
+        "description": "Total persons",
+        "table": "Table 4: Persons by smoking tobacco products "
+      },
+      "note": "Published SAPS combines all smokers; not daily-only.",
+      "category": "smoking"
+    },
+    {
+      "section": "Disability",
+      "key": "disability",
+      "label": "People with a disability",
+      "source": "SAPS 2022",
+      "columns": [
+        "T12_1_T"
+      ],
+      "glossary": [
+        {
+          "description": "Total Perons",
+          "table": "Table 1: Overall prevalence of persons with disability (to some and/or to a great extent) by sex"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": "Total population denominator, as approved.",
+      "category": "total population"
+    },
+    {
+      "section": "Economic status",
+      "key": "atWork",
+      "label": "At work",
+      "source": "SAPS 2022",
+      "columns": [
+        "T8_1_WT"
+      ],
+      "glossary": [
+        {
+          "description": "At work - Total",
+          "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+        }
+      ],
+      "denominator": "T8_1_TT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+      },
+      "note": null,
+      "category": "economic status"
+    },
+    {
+      "section": "Economic status",
+      "key": "retired",
+      "label": "Retired",
+      "source": "SAPS 2022",
+      "columns": [
+        "T8_1_RT"
+      ],
+      "glossary": [
+        {
+          "description": "Retired - Total",
+          "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+        }
+      ],
+      "denominator": "T8_1_TT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+      },
+      "note": null,
+      "category": "economic status"
+    },
+    {
+      "section": "Economic status",
+      "key": "students",
+      "label": "Students",
+      "source": "SAPS 2022",
+      "columns": [
+        "T8_1_ST"
+      ],
+      "glossary": [
+        {
+          "description": "Student - Total",
+          "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+        }
+      ],
+      "denominator": "T8_1_TT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+      },
+      "note": null,
+      "category": "economic status"
+    },
+    {
+      "section": "Economic status",
+      "key": "unemployed",
+      "label": "Unemployed (incl. first-job seekers)",
+      "source": "SAPS 2022",
+      "columns": [
+        "T8_1_LFFJT",
+        "T8_1_STUT",
+        "T8_1_LTUT"
+      ],
+      "glossary": [
+        {
+          "description": "Looking for first regular job - Total",
+          "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+        },
+        {
+          "description": "short Term Unemployed  - Total ",
+          "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+        },
+        {
+          "description": "Long Term Unemployed - Total",
+          "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+        }
+      ],
+      "denominator": "T8_1_TT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 15 years and over by principal economic status and sex "
+      },
+      "note": "Sum of CSO first-job, short-term and long-term unemployed categories, as approved.",
+      "category": "economic status"
+    },
+    {
+      "section": "Remote work",
+      "key": "remoteWork",
+      "label": "Works mainly at or from home",
+      "source": "SAPS 2022",
+      "columns": [
+        "T11_1_WMFHW"
+      ],
+      "glossary": [
+        {
+          "description": "Work mainly at or from home - Work",
+          "table": "Table 1: Population aged 5 years and over by means of travel to work, school or college"
+        }
+      ],
+      "denominator": "T11_1_TW",
+      "denominatorGlossary": {
+        "description": "Total - Work",
+        "table": "Table 1: Population aged 5 years and over by means of travel to work, school or college"
+      },
+      "note": null,
+      "category": "persons at work"
+    },
+    {
+      "section": "Age",
+      "key": "age0to4",
+      "label": "Age 0–4",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_1AGE0T",
+        "T1_1AGE1T",
+        "T1_1AGE2T",
+        "T1_1AGE3T",
+        "T1_1AGE4T"
+      ],
+      "glossary": [
+        {
+          "description": "Age 0 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        },
+        {
+          "description": "Age 1 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        },
+        {
+          "description": "Age 2 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        },
+        {
+          "description": "Age 3 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        },
+        {
+          "description": "Age 4 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": null,
+      "category": "total population"
+    },
+    {
+      "section": "Age",
+      "key": "age20to24",
+      "label": "Age 20–24",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_1AGE20_24T"
+      ],
+      "glossary": [
+        {
+          "description": "Age 20 - 24 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": null,
+      "category": "total population"
+    },
+    {
+      "section": "Age",
+      "key": "age50to54",
+      "label": "Age 50–54",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_1AGE50_54T"
+      ],
+      "glossary": [
+        {
+          "description": "Age 50 - 54 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": null,
+      "category": "total population"
+    },
+    {
+      "section": "Age",
+      "key": "age75plus",
+      "label": "Age 75+",
+      "source": "SAPS 2022",
+      "columns": [
+        "T1_1AGE75_79T",
+        "T1_1AGE80_84T",
+        "T1_1AGEGE_85T"
+      ],
+      "glossary": [
+        {
+          "description": "Age 75 - 79 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        },
+        {
+          "description": "Age 80 - 84 - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        },
+        {
+          "description": "Age 85 and over - Total",
+          "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+        }
+      ],
+      "denominator": "T1_1AGETT",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Population aged 0 - 19 by sex and year of age, persons aged 20 years and over by sex and age group"
+      },
+      "note": null,
+      "category": "total population"
+    },
+    {
+      "section": "Families",
+      "key": "marriedNoChildren",
+      "label": "Married couples (no children)",
+      "source": null,
+      "columns": null,
+      "glossary": [],
+      "denominator": "T4_1_TF",
+      "denominatorGlossary": {
+        "description": "Total (No. of families)",
+        "table": "Table 1: Families, family members and children in families, by size of family"
+      },
+      "note": "SAPS family tables do not distinguish married and cohabiting couples. Household composition rows count households, not families; no substitution.",
+      "category": "families"
+    },
+    {
+      "section": "Families",
+      "key": "marriedWithChildren",
+      "label": "Married with children",
+      "source": null,
+      "columns": null,
+      "glossary": [],
+      "denominator": "T4_1_TF",
+      "denominatorGlossary": {
+        "description": "Total (No. of families)",
+        "table": "Table 1: Families, family members and children in families, by size of family"
+      },
+      "note": "SAPS family tables do not distinguish married and cohabiting couples. Household composition rows count households, not families; no substitution.",
+      "category": "families"
+    },
+    {
+      "section": "Families",
+      "key": "cohabiting",
+      "label": "Cohabiting couples",
+      "source": null,
+      "columns": null,
+      "glossary": [],
+      "denominator": "T4_1_TF",
+      "denominatorGlossary": {
+        "description": "Total (No. of families)",
+        "table": "Table 1: Families, family members and children in families, by size of family"
+      },
+      "note": "SAPS family tables do not distinguish married and cohabiting couples. Household composition rows count households, not families; no substitution.",
+      "category": "families"
+    },
+    {
+      "section": "Families",
+      "key": "oneParent",
+      "label": "One-parent families",
+      "source": "SAPS 2022",
+      "columns": [
+        "T4_3FOPMCT",
+        "T4_3FOPFCT"
+      ],
+      "glossary": [
+        {
+          "description": "Total one parent family (mother) with children (No. of families)",
+          "table": "Table 3: Family units with children by type of family and age of children"
+        },
+        {
+          "description": "Total one parent family (father) with children (No. of families)",
+          "table": "Table 3: Family units with children by type of family and age of children"
+        }
+      ],
+      "denominator": "T4_1_TF",
+      "denominatorGlossary": {
+        "description": "Total (No. of families)",
+        "table": "Table 1: Families, family members and children in families, by size of family"
+      },
+      "note": "Sum of CSO mother and father one-parent family totals.",
+      "category": "families"
+    },
+    {
+      "section": "Households",
+      "key": "singleOccupant",
+      "label": "Single-occupant households",
+      "source": "SAPS 2022",
+      "columns": [
+        "T5_1OP_H"
+      ],
+      "glossary": [
+        {
+          "description": "One person households (No. of households)",
+          "table": "Table 1: Private households by type"
+        }
+      ],
+      "denominator": "T5_1T_H",
+      "denominatorGlossary": {
+        "description": "Total households (No. of households)",
+        "table": "Table 1: Private households by type"
+      },
+      "note": null,
+      "category": "private households"
+    },
+    {
+      "section": "Tenure",
+      "key": "mortgage",
+      "label": "Owned with mortgage",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_3_OMLH"
+      ],
+      "glossary": [
+        {
+          "description": "Owned with mortgage or loan (No. of households)",
+          "table": "Table 3: Permanent private households by type of occupancy "
+        }
+      ],
+      "denominator": "T6_3_TH",
+      "denominatorGlossary": {
+        "description": "Total (No. of households)",
+        "table": "Table 3: Permanent private households by type of occupancy "
+      },
+      "note": null,
+      "category": "tenure"
+    },
+    {
+      "section": "Tenure",
+      "key": "ownedOutright",
+      "label": "Owned outright",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_3_OOH"
+      ],
+      "glossary": [
+        {
+          "description": "Owned outright (No. of households)",
+          "table": "Table 3: Permanent private households by type of occupancy "
+        }
+      ],
+      "denominator": "T6_3_TH",
+      "denominatorGlossary": {
+        "description": "Total (No. of households)",
+        "table": "Table 3: Permanent private households by type of occupancy "
+      },
+      "note": null,
+      "category": "tenure"
+    },
+    {
+      "section": "Tenure",
+      "key": "rentedPrivate",
+      "label": "Rented: private landlord",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_3_RPLH"
+      ],
+      "glossary": [
+        {
+          "description": "Rented from private landlord (No. of households) ",
+          "table": "Table 3: Permanent private households by type of occupancy "
+        }
+      ],
+      "denominator": "T6_3_TH",
+      "denominatorGlossary": {
+        "description": "Total (No. of households)",
+        "table": "Table 3: Permanent private households by type of occupancy "
+      },
+      "note": null,
+      "category": "tenure"
+    },
+    {
+      "section": "Tenure",
+      "key": "rentedLocalAuthority",
+      "label": "Rented: local authority",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_3_RLAH"
+      ],
+      "glossary": [
+        {
+          "description": "Rented from Local Authority (No. of households)",
+          "table": "Table 3: Permanent private households by type of occupancy "
+        }
+      ],
+      "denominator": "T6_3_TH",
+      "denominatorGlossary": {
+        "description": "Total (No. of households)",
+        "table": "Table 3: Permanent private households by type of occupancy "
+      },
+      "note": null,
+      "category": "tenure"
+    },
+    {
+      "section": "Tenure",
+      "key": "rentedVoluntary",
+      "label": "Rented: voluntary/co-operative",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_3_RVCHBH"
+      ],
+      "glossary": [
+        {
+          "description": "Rented from voluntary/co-operative housing body (No. of households)",
+          "table": "Table 3: Permanent private households by type of occupancy "
+        }
+      ],
+      "denominator": "T6_3_TH",
+      "denominatorGlossary": {
+        "description": "Total (No. of households)",
+        "table": "Table 3: Permanent private households by type of occupancy "
+      },
+      "note": null,
+      "category": "tenure"
+    },
+    {
+      "section": "Dwellings",
+      "key": "vacant",
+      "label": "Vacant",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_8_OVD"
+      ],
+      "glossary": [
+        {
+          "description": "Other vacant dwellings",
+          "table": "Table 8: Occupancy status of permanent dwellings on Census night"
+        }
+      ],
+      "denominator": "T6_8_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 8: Occupancy status of permanent dwellings on Census night"
+      },
+      "note": null,
+      "category": "dwellings"
+    },
+    {
+      "section": "Dwellings",
+      "key": "holidayHomes",
+      "label": "Unoccupied holiday homes",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_8_UHH"
+      ],
+      "glossary": [
+        {
+          "description": "Unoccupied holiday homes",
+          "table": "Table 8: Occupancy status of permanent dwellings on Census night"
+        }
+      ],
+      "denominator": "T6_8_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 8: Occupancy status of permanent dwellings on Census night"
+      },
+      "note": null,
+      "category": "dwellings"
+    },
+    {
+      "section": "Bedrooms",
+      "key": "bedrooms3",
+      "label": "3 bedrooms",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_9_3BRH"
+      ],
+      "glossary": [
+        {
+          "description": "3 bedrooms (No. of households)",
+          "table": "Table 9: Permanent private households by number of bedrooms "
+        }
+      ],
+      "denominator": "T6_9_TH",
+      "denominatorGlossary": {
+        "description": "Total (No. of households)",
+        "table": "Table 9: Permanent private households by number of bedrooms "
+      },
+      "note": null,
+      "category": "households by bedrooms"
+    },
+    {
+      "section": "Bedrooms",
+      "key": "bedrooms5plus",
+      "label": "5+ bedrooms",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_9_GE5BRH"
+      ],
+      "glossary": [
+        {
+          "description": "5 bedrooms (No. of households)",
+          "table": "Table 9: Permanent private households by number of bedrooms "
+        }
+      ],
+      "denominator": "T6_9_TH",
+      "denominatorGlossary": {
+        "description": "Total (No. of households)",
+        "table": "Table 9: Permanent private households by number of bedrooms "
+      },
+      "note": "GE5 is the terminal bedroom band; glossary description says 5 bedrooms. Code and full partition identify 5+; no higher bedroom band exists.",
+      "category": "households by bedrooms"
+    },
+    {
+      "section": "Water",
+      "key": "publicMains",
+      "label": "Public mains",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_6_PM"
+      ],
+      "glossary": [
+        {
+          "description": "Public main",
+          "table": "Table 6: Permanent private households by water supply "
+        }
+      ],
+      "denominator": "T6_6_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 6: Permanent private households by water supply "
+      },
+      "note": null,
+      "category": "water"
+    },
+    {
+      "section": "Water",
+      "key": "privateWater",
+      "label": "Group schemes / private water",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_6_GSLA",
+        "T6_6_GSP",
+        "T6_6_OP"
+      ],
+      "glossary": [
+        {
+          "description": "Group scheme with public source",
+          "table": "Table 6: Permanent private households by water supply "
+        },
+        {
+          "description": "Group scheme with private source",
+          "table": "Table 6: Permanent private households by water supply "
+        },
+        {
+          "description": "Other private source",
+          "table": "Table 6: Permanent private households by water supply "
+        }
+      ],
+      "denominator": "T6_6_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 6: Permanent private households by water supply "
+      },
+      "note": "Includes group schemes with public source, as approved.",
+      "category": "water"
+    },
+    {
+      "section": "Heating fuel",
+      "key": "oil",
+      "label": "Oil",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_5_OCH"
+      ],
+      "glossary": [
+        {
+          "description": "Oil",
+          "table": "Table 5: Permanent private households by central heating "
+        }
+      ],
+      "denominator": "T6_5_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 5: Permanent private households by central heating "
+      },
+      "note": null,
+      "category": "heating fuel"
+    },
+    {
+      "section": "Heating fuel",
+      "key": "gas",
+      "label": "Natural gas",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_5_NGCH"
+      ],
+      "glossary": [
+        {
+          "description": "Natural gas",
+          "table": "Table 5: Permanent private households by central heating "
+        }
+      ],
+      "denominator": "T6_5_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 5: Permanent private households by central heating "
+      },
+      "note": null,
+      "category": "heating fuel"
+    },
+    {
+      "section": "Heating fuel",
+      "key": "electric",
+      "label": "Electric",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_5_ECH"
+      ],
+      "glossary": [
+        {
+          "description": "Electricity",
+          "table": "Table 5: Permanent private households by central heating "
+        }
+      ],
+      "denominator": "T6_5_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 5: Permanent private households by central heating "
+      },
+      "note": null,
+      "category": "heating fuel"
+    },
+    {
+      "section": "Heating fuel",
+      "key": "coal",
+      "label": "Coal (incl. anthracite)",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_5_CCH"
+      ],
+      "glossary": [
+        {
+          "description": "Coal (incl. anthracite)",
+          "table": "Table 5: Permanent private households by central heating "
+        }
+      ],
+      "denominator": "T6_5_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 5: Permanent private households by central heating "
+      },
+      "note": null,
+      "category": "heating fuel"
+    },
+    {
+      "section": "Renewable energy",
+      "key": "noRenewable",
+      "label": "No renewable energy source",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_10_NORE"
+      ],
+      "glossary": [
+        {
+          "description": "No Renewable Energy",
+          "table": "Table 10: Permanent private households by number of renewables"
+        }
+      ],
+      "denominator": "T6_10_T",
+      "denominatorGlossary": {
+        "description": "Total Renewables",
+        "table": "Table 10: Permanent private households by number of renewables"
+      },
+      "note": null,
+      "category": "renewable energy"
+    },
+    {
+      "section": "Smoke alarm",
+      "key": "noSmokeAlarm",
+      "label": "No smoke alarms",
+      "source": "SAPS 2022",
+      "columns": [
+        "T6_11_NOSA"
+      ],
+      "glossary": [
+        {
+          "description": "No smoke alarms",
+          "table": "Table 11: Permanent private households by smoke alarms"
+        }
+      ],
+      "denominator": "T6_11_T",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 11: Permanent private households by smoke alarms"
+      },
+      "note": "Published CSO label used, as approved.",
+      "category": "households by smoke alarm"
+    },
+    {
+      "section": "Internet",
+      "key": "broadband",
+      "label": "Broadband",
+      "source": "SAPS 2022",
+      "columns": [
+        "T15_2_BB"
+      ],
+      "glossary": [
+        {
+          "description": "Broadband",
+          "table": "Table 2: Number of households by type of  internet connection "
+        }
+      ],
+      "denominator": "T15_2_T",
+      "denominatorGlossary": {
+        "description": "All internet connections",
+        "table": "Table 2: Number of households by type of  internet connection "
+      },
+      "note": null,
+      "category": "internet"
+    },
+    {
+      "section": "Cars",
+      "key": "noCar",
+      "label": "No car",
+      "source": "SAPS 2022",
+      "columns": [
+        "T15_1_NC"
+      ],
+      "glossary": [
+        {
+          "description": "No motor car",
+          "table": "Table 1: Number of households with cars"
+        }
+      ],
+      "denominator": "T15_1_TC",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Number of households with cars"
+      },
+      "note": null,
+      "category": "cars"
+    },
+    {
+      "section": "Cars",
+      "key": "cars3plus",
+      "label": "3+ cars",
+      "source": "SAPS 2022",
+      "columns": [
+        "T15_1_3C",
+        "T15_1_GE4C"
+      ],
+      "glossary": [
+        {
+          "description": "3 motor cars",
+          "table": "Table 1: Number of households with cars"
+        },
+        {
+          "description": "4 or more motor cars",
+          "table": "Table 1: Number of households with cars"
+        }
+      ],
+      "denominator": "T15_1_TC",
+      "denominatorGlossary": {
+        "description": "Total",
+        "table": "Table 1: Number of households with cars"
+      },
+      "note": null,
+      "category": "cars"
+    }
+  ]
+}
